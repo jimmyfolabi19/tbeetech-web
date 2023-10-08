@@ -31,6 +31,9 @@ app.get('/portfolio', (req,res)=> {
 app.get('/blog', (req,res)=> {
     res.render('blog')
 })
+app.get('/service_shop', (req,res) => {
+    res.render('service_shop')
+})
 app.listen(PORT, ()=>{
     console.log('app running on local host 5000')
 })
