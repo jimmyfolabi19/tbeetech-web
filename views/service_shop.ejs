@@ -1,0 +1,379 @@
+<%- include('partials/header')%>
+    <section id="ai" class="service">
+        <h2 class="service-title">AI Services</h2>
+        <div class="product">
+            <img src="ai_product.jpg" alt="AI Product" class="product-image">
+            <h3 class="product-title">AI Product 1</h3>
+            <p class="product-description">Unlock the power of artificial intelligence with AI Product 1. Streamline your operations, automate repetitive tasks, and make data-driven decisions. Harness machine learning and predictive analytics to stay ahead of the competition.</p>
+            <p class="product-features"><strong>Key Features:</strong></p>
+            <ul class="product-features-list">
+                <li>Customized AI solutions</li>
+                <li>Machine learning and predictive analytics</li>
+                <li>Data-driven decision-making</li>
+                <li>Competitive advantage</li>
+            </ul>
+            <p class="product-price">Price: $199</p>
+            <button class="add-to-cart" data-product-id="1">Add to Cart</button>
+        </div>
+        <!-- Add more AI service products here -->
+    </section>
+
+    <section id="android" class="service">
+        <h2 class="service-title">Android Development Services</h2>
+        <div class="product">
+            <img src="android_product.jpg" alt="Android Product" class="product-image">
+            <h3 class="product-title">Android Product 1</h3>
+            <p class="product-description">Empower your brand with a stunning Android app that engages users and drives results. Our Android Development Services are crafted to transform your ideas into sleek, user-friendly applications that captivate your audience.</p>
+            <p class="product-features"><strong>Key Features:</strong></p>
+            <ul class="product-features-list">
+                <li>Customized Android app development</li>
+                <li>User-friendly interfaces</li>
+                <li>E-commerce integration</li>
+                <li>Responsive design</li>
+            </ul>
+            <p class="product-price">Price: $149</p>
+            <button class="add-to-cart" data-product-id="2">Add to Cart</button>
+        </div>
+        <!-- Add more Android development service products here -->
+    </section>
+
+    <section id="web" class="service">
+        <h2 class="service-title">Web Development Services</h2>
+        <div class="product">
+            <img src="web_product.jpg" alt="Web Development Product" class="product-image">
+            <h3 class="product-title">Custom Website Development</h3>
+            <p class="product-description">Elevate your online presence with our comprehensive Web Development Services. We specialize in creating dynamic and visually appealing websites that not only captivate your audience but also drive results.</p>
+            <p class="product-features"><strong>Key Features:</strong></p>
+            <ul class="product-features-list">
+                <li>Customized web solutions</li>
+                <li>Responsive design</li>
+                <li>E-commerce integration</li>
+                <li>User-friendly CMS</li>
+                <li>SEO optimization</li>
+            </ul>
+            <p class="product-price">Price: Contact Us</p>
+            <button class="add-to-cart" data-product-id="3">Add to Cart</button>
+        </div>
+        <!-- Add more Web development service products here -->
+    </section>
+
+    <section id="graphics" class="service">
+        <h2 class="service-title">Graphics Design Services</h2>
+        <div class="product">
+            <img src="graphics_product.jpg" alt="Graphics Design Product" class="product-image">
+            <h3 class="product-title">Custom Graphics Design</h3>
+            <p class="product-description">Transform your brand with captivating visual elements. Our Graphics Design services are dedicated to crafting memorable designs that resonate with your audience.</p>
+            <p class="product-features"><strong>Key Services:</strong></p>
+            <ul class="product-features-list">
+                <li>Logo design</li>
+                <li>Marketing collateral</li>
+                <li>UI/UX design</li>
+                <li>Illustrations</li>
+                <li>Branding</li>
+            </ul>
+            <p class="product-price">Price: Contact Us</p>
+            <button class="add-to-cart" data-product-id="4">Add to Cart</button>
+        </div>
+        <!-- Add more Graphics design service products here -->
+    </section>
+
+    <!-- Add sections for Animation Services, NFT Projects, and other services as needed -->
+
+    <div class="shopping-cart">
+        <h2 class="shopping-cart-title">Shopping Cart</h2>
+        <ul class="cart-items" id="cart-items"></ul>
+        <p class="cart-total">Total: <span id="cart-total">$0</span></p>
+        <button class="checkout" id="checkout">Checkout</button>
+    </div>
+
+    <footer class="footer">
+        <p class="footer-text">&copy; 2023 Your Website</p>
+    </footer>
+    <script src="script.js">
+
+// Sample products data (you can replace this with actual product data from a database)
+const products = [
+    {
+        id: 1,
+        title: 'AI Product 1',
+        description: 'Unlock the power of artificial intelligence with AI Product 1. Streamline your operations, automate repetitive tasks, and make data-driven decisions. Harness machine learning and predictive analytics to stay ahead of the competition.',
+        price: 199,
+        image: 'ai_product.jpg',
+    },
+    {
+        id: 2,
+        title: 'Android Product 1',
+        description: 'Empower your brand with a stunning Android app that engages users and drives results. Our Android Development Services are crafted to transform your ideas into sleek, user-friendly applications that captivate your audience.',
+        price: 149,
+        image: 'android_product.jpg',
+    },
+    // Add more product objects here for each service
+];
+
+// Sample user data (you can replace this with actual user authentication)
+let loggedIn = false;
+
+// Sample cart data (you can replace this with a more structured cart)
+const cart = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+    const loginLink = document.querySelector('.user-login');
+    const logoutLink = document.querySelector('.user-logout');
+    const profileLink = document.querySelector('.user-profile');
+    const cartLink = document.querySelector('.user-cart');
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+    // Handle user login/logout logic (sample)
+    loginLink.addEventListener('click', () => {
+        loggedIn = true;
+        toggleUserLinks();
+    });
+
+    logoutLink.addEventListener('click', () => {
+        loggedIn = false;
+        toggleUserLinks();
+    });
+
+    function toggleUserLinks() {
+        if (loggedIn) {
+            loginLink.style.display = 'none';
+            logoutLink.style.display = 'inline';
+            profileLink.style.display = 'inline';
+        } else {
+            loginLink.style.display = 'inline';
+            logoutLink.style.display = 'none';
+            profileLink.style.display = 'none';
+        }
+    }
+
+    // Add products to the cart
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const productId = parseInt(button.getAttribute('data-product-id'));
+            const product = products.find(p => p.id === productId);
+
+            if (product) {
+                cart.push(product);
+                updateCartDisplay();
+            }
+        });
+    });
+
+    // Update cart display
+    function updateCartDisplay() {
+        cartItems.innerHTML = '';
+        let total = 0;
+
+        cart.forEach(item => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${item.title} - $${item.price}`;
+            cartItems.appendChild(listItem);
+            total += item.price;
+        });
+
+        cartTotal.textContent = `$${total.toFixed(2)}`;
+    }
+
+
+    </script>
+    <style>
+
+        /* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Define a futuristic color scheme */
+body {
+    background-color: #1d1f2a;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+/* Style the header */
+.header {
+    background-color: #0c88ff;
+    padding: 20px 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.header-nav {
+    flex: 1;
+    text-align: right;
+}
+
+.header-nav-list {
+    list-style: none;
+}
+
+.header-nav-list li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.header-nav-list li:last-child {
+    margin-right: 0;
+}
+
+.header-nav-list a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.user-account {
+    font-size: 16px;
+}
+
+.user-account a {
+    text-decoration: none;
+    color: #ffffff;
+    margin-right: 20px;
+    display: inline-block;
+}
+
+/* Style the services and products */
+.service {
+    padding: 40px 0;
+    background-color: #1d1f2a;
+}
+
+.service-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #0c88ff;
+    margin-bottom: 20px;
+}
+
+.product {
+    background-color: #282c36;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.product-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.product-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 10px 0;
+}
+
+.product-description {
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0c88ff;
+    margin: 10px 0;
+}
+
+.add-to-cart {
+    background-color: #0c88ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: #0576d6;
+}
+
+/* Style the shopping cart */
+.shopping-cart {
+    background-color: #1d1f2a;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.shopping-cart-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #0c88ff;
+    margin-bottom: 20px;
+}
+
+.cart-items {
+    list-style: none;
+    padding: 0;
+}
+
+.cart-items li {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.cart-total {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 20px 0;
+}
+
+.checkout {
+    background-color: #0c88ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.checkout:hover {
+    background-color: #0576d6;
+}
+
+/* Style the footer */
+.footer {
+    background-color: #0c88ff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-text {
+    font-size: 16px;
+    color: #ffffff;
+}
+
+        </style>
+</body>
+
+</html>
